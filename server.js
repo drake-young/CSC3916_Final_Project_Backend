@@ -13,6 +13,7 @@ var Review             =  require( './review' );
 var userController     =  require( './usercontroller' );
 var movieController    =  require( './moviecontroller' );
 var reviewController   =  require( './reviewController' );
+var requestIp          =  require('request-ip');
 require( './mydb.js' );
 
 
@@ -39,7 +40,7 @@ router.route('/blacklist')
 		{
 			res = res.status( 200 );
 			echo = req.body;
-			ip = req.ip || req.connection.remoteAddress;
+			ip = requestIp.getClientIp(req); //req.ip || req.connection.remoteAddress;
 			o = { ip : ip, echo: echo };
 			res.json(o);
 		});

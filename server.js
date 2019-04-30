@@ -37,14 +37,10 @@ router.route('/blacklist')
 	.get(
 		function ( req , res )
 		{
-			console.log(req);
-			console.log(req.ip);
-			console.log(req.body);
 			res = res.status( 200 );
 			echo = req.body;
-			ip = req.ip;
+			ip = req.ip || req.connection.remoteAddress;
 			o = { ip : ip, echo: echo };
-			console.log(o);
 			res.json(o);
 		});
 		

@@ -1,5 +1,4 @@
 // require any models
-require("./user");
 const mongoose  =  require( "mongoose" );
 const dbURI     =  process.env.DB_URL;
 

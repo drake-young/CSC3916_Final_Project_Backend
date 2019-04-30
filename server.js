@@ -30,176 +30,28 @@ app.use( passport.initialize( ) );
 // === CREATE ROUTER === //
 var router  =  express.Router( );
 
-// === CUSTOM FUNCTION TO GENERATE RETURN MESSAGE FOR BAD ROUTES === //
-function getBadRouteJSON( req , res , route )
-{
-	res.json(	{	
-					success:  false, 
-					msg:      req.method + " requests are not supported by " + route
-				});
-}
-
-// === CUSTOM FUNCTION TO RETURN JSON OBJECT OF HEADER, KEY, AND BODY OF REQUEST === //
-function getJSONObject( req ) 
-{
-    var json = {
-					headers  :  "No Headers",
-					key      :  process.env.UNIQUE_KEY,
-					body     :  "No Body"
-				};
-
-    if ( req.body != null ) 
-        json.body  =  req.body;
-	
-    if ( req.headers != null ) 
-        json.headers  =  req.headers;
-
-    return json;
-}
-
-// === CUSTOM FUNCTION TO RETURN JSON OBJECT OF STATUS, MESSAGE, HEADER, QUERY, & ENVIRONMENT KEY FOR /MOVIES === //
-function getMoviesJSONObject( req , msg )
-{
-	var json = {
-					status   :  200,
-					message  :  msg,
-					headers  :  "No Headers",
-					query    :  "No Query String",
-					env      :  process.env.UNIQUE_KEY
-				};
-	
-	if ( req.query != null )
-		json.query  =  req.query; 
-
-	if ( req.headers != null )
-		json.headers  =  req.headers;
-	
-	return json;
-}
 
 
-
-// === ROUTES TO /POST PERFORM A "SMART ECHO" WITH BASIC AUTH === //
-router.route('/post')
-    .post(
-		authController.isAuthenticated, 
-		function ( req , res ) 
-		{
-            console.log( req.body );
-            res  =  res.status( 200 );
-            if ( req.get( 'Content-Type' ) ) 
-			{
-                console.log( "Content-Type: " + req.get( 'Content-Type' ) );
-                res  =  res.type( req.get( 'Content-Type' ) );
-            }
-            var o  =  getJSONObject( req );
-            res.json( o );
-        });
-
-		
-		
-// === ROUTES TO /POSTJWT PERFORM AN "ECHO" WITH JWT AUTH === //
-router.route( '/postjwt' )
-    .post(
-		authJwtController.isAuthenticated, 
+// === ROUTES TO GET COUNTRY BLACKLIST === //
+router.route('/blacklist')
+	.get(
 		function ( req , res )
 		{
-            console.log( req.body );
-            res  =  res.status( 200 );
-            if ( req.get( 'Content-Type' ) ) 
-			{
-                console.log( "Content-Type: " + req.get( 'Content-Type' ) );
-                res  =  res.type( req.get( 'Content-Type' ) );
-            }
-            res.send( req.body );
-        }
-    );
-	
-router.route( '/findallusers' )
-    .post( userController.findAllUsers );
-
-	
-	
-// === ROUTES TO /SIGNUP === //
-router.route( '/signup' )
-	// === HANDLE POST REQUESTS === //
-	.post( userController.signUp )
-	// === ALL OTHER ROUTES TO /SIGNUP ARE REJECTED === //
-	.all(
-		function( req , res )
-		{ 
-			getBadRouteJSON( req , res , "/signup" ); 
-		});
-
-		
-		
-// === ROUTES TO /SIGNIN === //
-router.route( '/signin' )
-	// == HANDLE POST REQUESTS === //
-	.post( userController.signIn )
-	// === ALL OTHER ROUTES TO /SIGNIN  ARE REJECTED
-	.all(
-		function( req , res )
-		{ 
-			getBadRouteJSON( req , res , "/signin" ); 
-		});
-
-// === ROUTES TO /MOVIES === //
-router.route( '/movies' )
-	// === HANDLE GET REQUESTS === //
-	.get(
-			authJwtController.isAuthenticated, 
-			movieController.getMovies 
-		)
-	// === HANDLE POST REQUESTS === //
-	.post(
-			authJwtController.isAuthenticated,
-			movieController.postMovie
-		)
-	// === HANDLE PUT REQUESTS === //
-	.put(
-			authJwtController.isAuthenticated, 
-			movieController.putMovie
-		)
-	// === HANDLE DELETE REQUESTS === //
-	.delete(
-			authJwtController.isAuthenticated, 
-			movieController.deleteMovie
-		)
-	// === REJECT ALL OTHER REQUESTS TO /MOVIES === //
-	.all(
-		function( req , res )
-		{ 
-			getBadRouteJSON( req , res , "/movies" );
-		});
-		
-// === ROUTES TO /REVIEWS === //
-router.route( '/reviews' )
-	// === HANDLE GET REQUESTS === //
-	.get( reviewController.getReviews )
-	
-	// === HANDLE POST REQUESTS === //
-	.post(
-			authJwtController.isAuthenticated,
-			reviewController.postReview // TODO change to reviewController.postReview
-		)
-	// === REJECT ALL OTHER REQUESTS TO /MOVIES === //
-	.all(
-		function( req , res )
-		{ 
-			getBadRouteJSON( req , res , "/movies" );
+			console.log(req);
+			console.log(req.ip);
+			console.log(req.body);
+			res = res.status( 200 );
+			echo = req.body;
+			ip = req.ip;
+			o = { ip : ip, echo: echo };
+			console.log(o);
+			res.json(o);
 		});
 		
 
+		
 // === ATTEMPT TO ROUTE REQUEST === //
 app.use( '/' , router );
-
-// === IF UNEXPEDTED ROUTE IS SENT, REJECT IT HERE === //
-app.use(
-	function( req , res )
-	{ 
-		getBadRouteJSON( req , res , "this URL path" ); 
-	});
 
 // === LISTEN ON THE ENVIRONMENT PORT OR 8080 === //
 app.listen( process.env.PORT || 8080 );

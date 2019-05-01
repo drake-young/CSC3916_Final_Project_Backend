@@ -18,3 +18,11 @@ exports.getBlacklist =
 				res.status(200).send( blacklist );
 			});
 	};
+
+exports.isBlacklisted = 
+	async function ( countryCode )
+	{
+		query = { countryCode : countryCode };
+		let blacklist = await Blacklist.findOne( query );
+		return blacklist;
+	};

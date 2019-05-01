@@ -30,14 +30,26 @@ var router  =  express.Router( );
 
 
 // === ROUTES TO GET COUNTRY BLACKLIST === //
+router.route('/ip')
+	.get(
+		function ( req , res )
+		{
+			res = res.status( 200 );
+			ip = requestIp.getClientIp(req);
+			o = { ip : ip };
+			res.json(o);
+		});
+
+
+
+// === ROUTES TO GET COUNTRY BLACKLIST === //
 router.route('/blacklist')
 	.get(
 		function ( req , res )
 		{
 			res = res.status( 200 );
-			echo = req.body;
-			ip = requestIp.getClientIp(req); //req.ip || req.connection.remoteAddress;
-			o = { ip : ip, echo: echo };
+			ip = requestIp.getClientIp(req);
+			o = { ip : ip };
 			res.json(o);
 		});
 		

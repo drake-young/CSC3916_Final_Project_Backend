@@ -136,6 +136,50 @@ router.route( '/purchase' )
 						res.json({message: err.message});
 					});
 			
+		})
+	// just for testing, will delete for final submission
+	.get(
+		function ( req , res )
+		{
+			// === Get the IP === //
+			ip = requestIp.getClientIp(req);
+			http.get(
+				'http://api.ipstack.com/'+ip+'?access_key='+process.env.API_KEY, 
+				( resp ) => 
+				{
+					data = '';
+					resp.on( 'data', ( chunk ) => { data += chunk; } );
+					resp.on( 
+							'end', 
+							()=>
+							{
+								jsonData = JSON.parse( data );
+								userCountryCode = jsonData.country_code;
+								blacklistController.isBlacklisted( userCountryCode )
+									.then(
+										function ( blacklist )
+										{
+											if ( blacklist )
+											{
+												res.status(500).json( { success:false, message:"Your IP is from a blacklisted country" } );
+											}
+											else
+											{
+												res.status(200).json({success:true, message:"You have been cleared for purchase"});
+											}
+										})
+									.catch(()=>{ res.status(500).json({message:"something went wrong internally"})});
+							});
+				})
+				.on(
+					"error", 
+					(err) => 
+					{ 
+						console.log("Error: " + err.message); 
+						res = res.status(200);
+						res.json({message: err.message});
+					});
+			
 		});
 		
 

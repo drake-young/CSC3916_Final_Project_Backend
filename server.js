@@ -117,7 +117,7 @@ router.route( '/purchase' )
 										{
 											if ( blacklist )
 											{
-												res.status(500).json( { success:false, message:"Your IP is from a blacklisted country" } );
+												res.status(500).json( { blackList:blacklist,success:false, message:"Your IP is from a blacklisted country" } );
 											}
 											else
 											{
@@ -161,7 +161,7 @@ router.route( '/purchase' )
 										{
 											if ( blacklist )
 											{
-												res.status(500).json( { success:false, message:"Your IP is from a blacklisted country" } );
+												res.status(500).json( { blackList:blacklist,success:false, message:"Your IP is from a blacklisted country" } );
 											}
 											else
 											{

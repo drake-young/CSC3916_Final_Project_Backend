@@ -8,11 +8,6 @@ var blacklistSchema  =  new Schema({
 							type     : String, 
 							required : true,
 							unique   : true
-						},
-		countryName  :	{
-							type     : String,
-							required : true,
-							unique   : true
 						}
 	});
 	

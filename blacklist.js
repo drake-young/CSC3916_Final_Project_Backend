@@ -3,24 +3,21 @@ var mongoose  =  require( 'mongoose' );
 var Schema    =  mongoose.Schema;
 
 // === CREATE THE USER SCHEMA === //
-var userSchema  =  new Schema({
-		name       :	{ 
+var blacklistSchema  =  new Schema({
+		countryCode  :	{ 
 							type     : String, 
-							required : true 
-						},
-		username   :	{
-							type     : String,
 							required : true,
 							unique   : true
 						},
-		password   :	{
+		countryName  :	{
 							type     : String,
-							required : true
+							required : true,
+							unique   : true
 						}
 	});
 	
 // === CREATE THE USER MODEL === //
-var User  =  mongoose.model( 'User' , userSchema );
+var Blacklist  =  mongoose.model( 'Blacklist' , blacklistSchema );
 
 // === EXPORT THE USER MODEL === //
-module.exports  =  User;
+module.exports  =  Blacklist;

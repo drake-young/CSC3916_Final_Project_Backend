@@ -1,7 +1,6 @@
 // === LOAD REQUIRED PACKAGES === //
 var passport       =  require( 'passport' );
 var BasicStrategy  =  require( 'passport-http' ).BasicStrategy;
-var userController =  require( './usercontroller' );
 var crypto         =  require( 'crypto' );
 
 // === BASIC AUTHENTICATION STRATEGY === //
@@ -10,6 +9,7 @@ passport.use(
 		function( username , password , done ) 
 		{
 			// === ATTEMPT TO RETRIEVE USER FROM DATABASE === //
+			/* not sure whether we will need authentication yet
 			userController.findUserByLogin( username , password )
 				.then(
 					function( user )
@@ -25,6 +25,8 @@ passport.use(
 							return done( null , false );
 						}
 					});
+			*/
+			return done( null , {} );
 		}
 	));
 

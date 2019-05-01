@@ -2,7 +2,6 @@
 var passport        =  require( 'passport' );
 var JwtStrategy     =  require( 'passport-jwt' ).Strategy;
 var ExtractJwt      =  require( 'passport-jwt' ).ExtractJwt;
-var userController  =  require( './usercontroller' );
 require( 'dotenv' ).load( );
 
 // === PREPARE VARS FOR JWT STRATEGY === //
@@ -17,6 +16,7 @@ passport.use(
 		function( jwt_payload , done ) 
 		{
 			// === ATTEMPT TO EXTRACT USER VIA TOKEN === //
+			/* Not sure if we will use authentication yet
 			userController.findUserById( jwt_payload )
 				.then(
 					function( user )
@@ -29,6 +29,8 @@ passport.use(
 						else
 							done( null , false );
 					});
+			*/
+			done( null , {} );
 		}
 	));
 

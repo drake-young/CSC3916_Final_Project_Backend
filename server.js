@@ -1,19 +1,15 @@
 // === FROM EXTERNAL FILES === //
-var cors               =  require( 'cors' );
-var express            =  require( 'express' );
-var http               =  require( 'http' );
-var bodyParser         =  require( 'body-parser' );
-var passport           =  require( 'passport' );
-var authController     =  require( './auth' );
-var authJwtController  =  require( './auth_jwt' );
-var jwt                =  require( 'jsonwebtoken' );
-var User               =  require( './user' );
-var Movie              =  require( './movie' );
-var Review             =  require( './review' );
-var userController     =  require( './usercontroller' );
-var movieController    =  require( './moviecontroller' );
-var reviewController   =  require( './reviewController' );
-var requestIp          =  require('request-ip');
+var cors                 =  require( 'cors' );
+var express              =  require( 'express' );
+var http                 =  require( 'http' );
+var bodyParser           =  require( 'body-parser' );
+var passport             =  require( 'passport' );
+var authController       =  require( './auth' );
+var authJwtController    =  require( './auth_jwt' );
+var jwt                  =  require( 'jsonwebtoken' );
+var Blacklist		     =  require( './blacklist' );
+var blacklistController  =  require( './blacklistController' );
+var requestIp            =  require('request-ip');
 require( './mydb.js' );
 
 

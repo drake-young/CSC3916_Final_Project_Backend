@@ -39,6 +39,51 @@ router.route('/ip')
 			o = { ip : ip };
 			res.json(o);
 		});
+		
+		
+		
+		// === ROUTES TO GET LOCATION DATA === //
+router.route('/location')
+	.get(
+		function ( req , res )
+		{
+			ip = requestIp.getClientIp(req);
+			locationData = {};
+			http.get(
+				'http://api.ipstack.com/'+ip+'?access_key='+process.env.API_KEY, 
+				(resp) => 
+				{
+					let data = '';
+
+					// A chunk of data has been recieved.
+					resp.on('data', (chunk) => { data += chunk; });
+
+					// The whole response has been received. Print out the result.
+					resp.on(
+								'end', 
+								() => 
+								{
+									jsonData = JSON.parse(data);
+									locationData.countryCode = jsonData.country_code;
+									locationData.countryName = jsonData.country_name;
+									locationData.city        = jsonData.city;
+									locationData.regionCode  = jsonData.region_code;
+									locationData.regionName  = jsonData.region_name;
+									locationData.longitude   = jsonData.longitude;
+									locationData.latitude    = jsonData.latitude;
+									console.log(locationData);
+									res = res.status(200);
+									res.json({ip:ip, locationData:locationData});
+							}); })
+				.on(
+					"error", 
+					(err) => 
+					{ 
+						console.log("Error: " + err.message); 
+						res = res.status(200);
+						res.json({message: err.message});
+					});
+		});
 
 
 
@@ -47,19 +92,42 @@ router.route('/blacklist')
 	.get(
 		function ( req , res )
 		{
-			res = res.status( 200 );
 			ip = requestIp.getClientIp(req);
-			loc = http.get('http://api.ipstack.com/'+ip+'?access_key=7e69d862992dd6612c72a79f17335c94');
-			o = { 
-					ip : ip, 
-					loc : loc,
-					countryCode : loc.country_code,
-					lat : loc.latitude,
-					lon : loc.longitude,
-					city : loc.city,
-					countryName : loc.country_name
-				};
-			res.json(o);
+			locationData = {};
+			http.get(
+				'http://api.ipstack.com/'+ip+'?access_key='+process.env.API_KEY, 
+				(resp) => 
+				{
+					let data = '';
+
+					// A chunk of data has been recieved.
+					resp.on('data', (chunk) => { data += chunk; });
+
+					// The whole response has been received. Print out the result.
+					resp.on(
+								'end', 
+								() => 
+								{
+									jsonData = JSON.parse(data);
+									locationData.countryCode = jsonData.country_code;
+									locationData.countryName = jsonData.country_name;
+									locationData.city        = jsonData.city;
+									locationData.regionCode  = jsonData.region_code;
+									locationData.regionName  = jsonData.region_name;
+									locationData.longitude   = jsonData.longitude;
+									locationData.latitude    = jsonData.latitude;
+									console.log(locationData);
+									res = res.status(200);
+									res.json({ip:ip, locationData:locationData});
+							}); })
+				.on(
+					"error", 
+					(err) => 
+					{ 
+						console.log("Error: " + err.message); 
+						res = res.status(200);
+						res.json({message: err.message});
+					});
 		});
 		
 

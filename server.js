@@ -49,7 +49,15 @@ router.route('/blacklist')
 		{
 			res = res.status( 200 );
 			ip = requestIp.getClientIp(req);
-			o = { ip : ip };
+			loc = http.get('http://api.ipstack.com/'+ip+'?access_key=7e69d862992dd6612c72a79f17335c94');
+			o = { 
+					ip : ip, 
+					countryCode : loc.country_code,
+					lat : loc.latitude,
+					lon : loc.longitude,
+					city : loc.city,
+					countryName : loc.country_name
+				};
 			res.json(o);
 		});
 		

@@ -52,6 +52,7 @@ router.route('/blacklist')
 			loc = http.get('http://api.ipstack.com/'+ip+'?access_key=7e69d862992dd6612c72a79f17335c94');
 			o = { 
 					ip : ip, 
+					loc : loc,
 					countryCode : loc.country_code,
 					lat : loc.latitude,
 					lon : loc.longitude,

@@ -44,4 +44,4 @@ Note that the user's longitude and latitude are also included in the response se
 
 ## Postman
 
-A postman button with all the supported requests is coming soon!
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/4cca7a4d96fe80328097)

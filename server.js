@@ -117,14 +117,14 @@ router.route( '/purchase' )
 										{
 											if ( blacklist )
 											{
-												res.status(500).json( { success:false, message:"Your IP is from a blacklisted country" } );
+												res.status(500).json( {blackList:blacklist,success:false, message:"Your IP is from a blacklisted country" } );
 											}
 											else
 											{
-												res.status(200).json({success:true, message:"You have been cleared for purchase"});
+												res.status(200).json({blackList:blacklist,success:true, message:"You have been cleared for purchase"});
 											}
 										})
-									.catch(()=>{ res.status(500).json({blackList:blacklist,message:"something went wrong internally"})});
+									.catch(()=>{ res.status(500).json({message:"something went wrong internally"})});
 							});
 				})
 				.on(
@@ -165,7 +165,7 @@ router.route( '/purchase' )
 											}
 											else
 											{
-												res.status(200).json({success:true, message:"You have been cleared for purchase"});
+												res.status(200).json({blackList:blacklist,success:true, message:"You have been cleared for purchase"});
 											}
 										})
 									.catch(()=>{ res.status(500).json({message:"something went wrong internally"})});

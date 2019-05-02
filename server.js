@@ -111,20 +111,22 @@ router.route( '/purchase' )
 							{
 								jsonData = JSON.parse( data );
 								userCountryCode = jsonData.country_code;
+								userLat = jsonData.latitude;
+								userLong = jsonData.longitude;
 								blacklistController.isBlacklisted( userCountryCode )
 									.then(
 										function ( blacklist )
 										{
 											if ( blacklist )
 											{
-												res.status(500).json( {blackList:blacklist,success:false, message:"Your IP is from a blacklisted country" } );
+												res.status(500).json( {success:false, message:"Your IP is from a blacklisted country", latitude: userLat, lognitude: userLong } );
 											}
 											else
 											{
-												res.status(200).json({blackList:blacklist,success:true, message:"You have been cleared for purchase"});
+												res.status(200).json({success:true, message:"You have been cleared for purchase", latitude: userLat, lognitude: userLong});
 											}
 										})
-									.catch(()=>{ res.status(500).json({message:"something went wrong internally"})});
+									.catch(()=>{ res.status(500).json({message:"something went wrong internally", latitude: userLat, lognitude: userLong})});
 							});
 				})
 				.on(
@@ -155,20 +157,22 @@ router.route( '/purchase' )
 							{
 								jsonData = JSON.parse( data );
 								userCountryCode = jsonData.country_code;
+								userLat = jsonData.latitude;
+								userLong = jsonData.longitude;
 								blacklistController.isBlacklisted( userCountryCode )
 									.then(
 										function ( blacklist )
 										{
 											if ( blacklist )
 											{
-												res.status(500).json( { blackList:blacklist,success:false, message:"Your IP is from a blacklisted country" } );
+												res.status(500).json( {success:false, message:"Your IP is from a blacklisted country", latitude: userLat, lognitude: userLong } );
 											}
 											else
 											{
-												res.status(200).json({blackList:blacklist,success:true, message:"You have been cleared for purchase"});
+												res.status(200).json({success:true, message:"You have been cleared for purchase", latitude: userLat, lognitude: userLong});
 											}
 										})
-									.catch(()=>{ res.status(500).json({message:"something went wrong internally"})});
+									.catch(()=>{ res.status(500).json({message:"something went wrong internally", latitude: userLat, lognitude: userLong})});
 							});
 				})
 				.on(

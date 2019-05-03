@@ -160,7 +160,7 @@ router.route( '/purchase' )
 															success   : false, 
 															message   : "Your IP is from a blacklisted country", 
 															latitude  : userLat, 
-															lognitude : userLong 
+															longitude : userLong 
 														});
 											}
 											else
@@ -170,7 +170,7 @@ router.route( '/purchase' )
 															success   : true, 
 															message   : "You have been cleared for purchase", 
 															latitude  : userLat, 
-															lognitude : userLong
+															longitude : userLong
 														});
 											}
 										})
@@ -182,7 +182,7 @@ router.route( '/purchase' )
 														success   : false,
 														message   : "something went wrong internally", 
 														latitude  : userLat, 
-														lognitude : userLong
+														longitude : userLong
 													});
 										});
 							});
@@ -232,7 +232,7 @@ router.route( '/purchase' )
 															success   : false, 
 															message   : "Your IP is from a blacklisted country", 
 															latitude  : userLat, 
-															lognitude : userLong 
+															longitude : userLong 
 														});
 											}
 											else
@@ -242,7 +242,7 @@ router.route( '/purchase' )
 															success   : true, 
 															message   : "You have been cleared for purchase", 
 															latitude  : userLat, 
-															lognitude : userLong
+															longitude : userLong
 														});
 											}
 										})
@@ -254,7 +254,7 @@ router.route( '/purchase' )
 														success   : false,
 														message   : "something went wrong internally", 
 														latitude  : userLat, 
-														lognitude : userLong
+														longitude : userLong
 													});
 										});
 							});

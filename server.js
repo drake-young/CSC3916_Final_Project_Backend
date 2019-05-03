@@ -153,7 +153,7 @@ router.route( '/purchase' )
 									.then(
 										( blacklist ) =>
 										{
-											if ( blacklist || blacklist.length > 0 )
+											if ( blacklist || ( blacklist != null && blacklist.length > 0 ) )
 											{
 												res  =  res.status( 200 )
 												res.json({
@@ -226,7 +226,7 @@ router.route( '/purchase' )
 									.then(
 										( blacklist ) =>
 										{
-											if ( blacklist || blacklist.length > 0 )
+											if ( blacklist || (blacklist != null && blacklist.length > 0 ) )
 											{
 												res  =  res.status( 200 )
 												res.json({

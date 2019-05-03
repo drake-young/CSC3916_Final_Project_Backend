@@ -155,7 +155,7 @@ router.route( '/purchase' )
 										{
 											if ( blacklist )
 											{
-												res  =  res.status( 500 )
+												res  =  res.status( 200 )
 												res.json({
 															success   : false, 
 															message   : "Your IP is from a blacklisted country", 
@@ -165,7 +165,7 @@ router.route( '/purchase' )
 											}
 											else
 											{
-												res  =  res.status( 500 )
+												res  =  res.status( 200 )
 												res.json({
 															success   : true, 
 															message   : "You have been cleared for purchase", 

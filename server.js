@@ -155,7 +155,6 @@ router.route( '/purchase' )
 										{
 											if ( blacklist || blacklist.length > 0 )
 											{
-												console.log("error in if");
 												res  =  res.status( 200 )
 												res.json({
 															success   : false, 
@@ -178,7 +177,7 @@ router.route( '/purchase' )
 									.catch( 
 										( ) => 
 										{ 
-											console.log("error in catch block");
+											console.log("error in /purchase catch block");
 											res  =  res.status( 200 )
 											res.json({
 														success   : false,
@@ -194,7 +193,6 @@ router.route( '/purchase' )
 					( err ) => 
 					{ 
 						console.log( "Error: " + err.message ); 
-						console.log( "Error in .on(error)" );
 						res  =  res.status( 200 );
 						res.json({
 									success   : false,
@@ -228,9 +226,9 @@ router.route( '/purchase' )
 									.then(
 										( blacklist ) =>
 										{
-											if ( blacklist )
+											if ( blacklist || blacklist.length > 0 )
 											{
-												res  =  res.status( 500 )
+												res  =  res.status( 200 )
 												res.json({
 															success   : false, 
 															message   : "Your IP is from a blacklisted country", 

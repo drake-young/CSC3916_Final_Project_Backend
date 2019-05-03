@@ -165,7 +165,7 @@ router.route( '/purchase' )
 											}
 											else
 											{
-												res  =  res.status( 200 )
+												res  =  res.status( 500 )
 												res.json({
 															success   : true, 
 															message   : "You have been cleared for purchase", 
@@ -177,7 +177,7 @@ router.route( '/purchase' )
 									.catch( 
 										( ) => 
 										{ 
-											res  =  res.status( 500 )
+											res  =  res.status( 200 )
 											res.json({
 														success   : false,
 														message   : "something went wrong internally", 

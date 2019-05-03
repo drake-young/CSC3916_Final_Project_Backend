@@ -153,8 +153,9 @@ router.route( '/purchase' )
 									.then(
 										( blacklist ) =>
 										{
-											if ( blacklist )
+											if ( blacklist || blacklist.length > 0 )
 											{
+												console.log("error in if");
 												res  =  res.status( 200 )
 												res.json({
 															success   : false, 
@@ -177,6 +178,7 @@ router.route( '/purchase' )
 									.catch( 
 										( ) => 
 										{ 
+											console.log("error in catch block");
 											res  =  res.status( 200 )
 											res.json({
 														success   : false,
@@ -192,6 +194,7 @@ router.route( '/purchase' )
 					( err ) => 
 					{ 
 						console.log( "Error: " + err.message ); 
+						console.log( "Error in .on(error)" );
 						res  =  res.status( 200 );
 						res.json({
 									success   : false,

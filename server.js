@@ -192,7 +192,7 @@ router.route( '/purchase' )
 					( err ) => 
 					{ 
 						console.log( "Error: " + err.message ); 
-						res  =  res.status( 500 );
+						res  =  res.status( 200 );
 						res.json({
 									success   : false,
 									message   : err.message,

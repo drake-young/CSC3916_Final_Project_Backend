@@ -158,7 +158,7 @@ router.route( '/purchase' )
 												res  =  res.status( 200 )
 												res.json({
 															success   : false, 
-															message   : "Your Country is Blacklisted\nReality is Often Disappointing", 
+															message   : "Your Country is Blacklisted -- Reality is Often Disappointing", 
 															latitude  : userLat, 
 															longitude : userLong 
 														});
@@ -168,7 +168,7 @@ router.route( '/purchase' )
 												res  =  res.status( 200 )
 												res.json({
 															success   : true, 
-															message   : "Gauntlet Purchased\nI See This as an Absolute Win!", 
+															message   : "Gauntlet Purchased -- I See This as an Absolute Win!", 
 															latitude  : userLat, 
 															longitude : userLong
 														});
@@ -231,7 +231,7 @@ router.route( '/purchase' )
 												res  =  res.status( 200 )
 												res.json({
 															success   : false, 
-															message   : "Your Country is Blacklisted\nReality is Often Disappointing", 
+															message   : "Your Country is Blacklisted -- Reality is Often Disappointing", 
 															latitude  : userLat, 
 															longitude : userLong 
 														});
@@ -241,7 +241,7 @@ router.route( '/purchase' )
 												res  =  res.status( 200 )
 												res.json({
 															success   : true, 
-															message   : "Gauntlet Purchased\nI See This as an Absolute Win!", 
+															message   : "Gauntlet Purchased -- I See This as an Absolute Win!", 
 															latitude  : userLat, 
 															longitude : userLong
 														});

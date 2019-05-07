@@ -158,7 +158,7 @@ router.route( '/purchase' )
 												res  =  res.status( 200 )
 												res.json({
 															success   : false, 
-															message   : "Your IP is from a blacklisted country", 
+															message   : "Your Country is Blacklisted<br/>Reality is Often Disappointing", 
 															latitude  : userLat, 
 															longitude : userLong 
 														});
@@ -168,7 +168,7 @@ router.route( '/purchase' )
 												res  =  res.status( 200 )
 												res.json({
 															success   : true, 
-															message   : "You have been cleared for purchase", 
+															message   : "Gauntlet Purchased<br/>I See This as an Absolute Win!", 
 															latitude  : userLat, 
 															longitude : userLong
 														});
@@ -181,7 +181,7 @@ router.route( '/purchase' )
 											res  =  res.status( 200 )
 											res.json({
 														success   : false,
-														message   : "something went wrong internally", 
+														message   : "Something Went Wrong Internally", 
 														latitude  : userLat, 
 														longitude : userLong
 													});
@@ -231,7 +231,7 @@ router.route( '/purchase' )
 												res  =  res.status( 200 )
 												res.json({
 															success   : false, 
-															message   : "Your IP is from a blacklisted country", 
+															message   : "Your Country is Blacklisted<br/>Reality is Often Disappointing", 
 															latitude  : userLat, 
 															longitude : userLong 
 														});
@@ -241,7 +241,7 @@ router.route( '/purchase' )
 												res  =  res.status( 200 )
 												res.json({
 															success   : true, 
-															message   : "You have been cleared for purchase", 
+															message   : "Gauntlet Purchased<br/>I See This as an Absolute Win!", 
 															latitude  : userLat, 
 															longitude : userLong
 														});
@@ -253,7 +253,7 @@ router.route( '/purchase' )
 											res  =  res.status( 500 )
 											res.json({
 														success   : false,
-														message   : "something went wrong internally", 
+														message   : "Something Went Wrong Internally", 
 														latitude  : userLat, 
 														longitude : userLong
 													});
